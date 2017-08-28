@@ -1,0 +1,9 @@
+com\server\dao\mapper\TCatMapper.class
+com\service\impl\ServiceImpl.class
+com\Application.class
+com\config\FsDataSourceConfig.class
+com\facade\TestFacade.class
+com\service\CatService.class
+com\server\dao\model\TCatDto.class
+com\service\IService.class
+com\service\impl\CatServiceImpl.class

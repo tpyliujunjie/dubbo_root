@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.anbao</groupId>
+		<artifactId>dubbo_root</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<packaging>war</packaging>
+	<artifactId>dubbo-server</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com.anbao</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>com.anbao</groupId>
+			<artifactId>cache</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>dubbo-server</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springboot.version}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- 用maven mybatis插件 如果不在plugin里面添加依赖包得引用的话，会找不到相关得jar包， 在plugin外部得jar包，他不会去找到并执行， 
+					所以要把plugin运行依赖得jar配置都放在里面 -->
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<!-- <executions> <execution> <id>Generate MyBatis Artifacts</id> <goals> 
+					<goal>generate</goal> </goals> </execution> </executions> -->
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+					<jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
+					<jdbcURL>jdbc:mysql://192.168.1.102:3306/babasport</jdbcURL>
+					<jdbcUserId>root</jdbcUserId>
+					<jdbcPassword>****</jdbcPassword>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<!-- 引用依赖库的版本 -->
+						<version>${mysql.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.mybatis.generator</groupId>
+						<artifactId>mybatis-generator-core</artifactId>
+						<version>${generator-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.mybatis</groupId>
+						<artifactId>mybatis</artifactId>
+						<!-- 引用依赖库的版本 -->
+						<version>${mybatis.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
